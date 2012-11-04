@@ -1,0 +1,27 @@
+<html>
+<body>
+	<h3>Instructions:</h3>
+	<ol style="line-height: 30px">
+		<li>Install 'ant' if it is not already installed in your computer.</li>
+		<li>Make sure your JAVA_HOME environment variable corresponds to the latest jdk installation.</li>
+		<li>Make sure that the ANT_HOME environment variable is set properly.</li>
+		<li>Navigate to the directory that contains your source folder (src), build.xml file and policy folder.</li>
+		<li>Make sure that your build file has the correct file paths and codebase paths.</li>
+		<li>Make sure that the client has the appropriate permissions to download the necessary files from the server's codebase and vice versa.</li>
+		<li>In the build file, make sure you have the correct IP/domain name of the remote server as program arguments for the target named "runClient" and "runComputer"</li>
+		<li>In the build file, under the properties section, make sure you have the correct IP/domain name of the machines (Compute Servers) that are going to be used as part of the experiment. Also, make sure that the credentials are properly set for 'ssh' execution.</li>
+		<li>Now, run 'ant your_build_file_name'</li>
+		<li>If the build is successful, you can now see two additional folders - "build" and "dist" and the appropriate jar files created. <br/>
+		    If it is not, make sure you followed the above steps correctly.</li>
+		<li>Open an ssh connection to the desired remote server that is going to act as the ComputeSpace. <br/>
+		    If you're using CSIL machines, you don't have to copy the space.jar file on to that server as all the machines use the same shared storage. <br/>
+		    Otherwise, copy them over. </li>
+		<li>Now, from the terminal window of the Space server, run "ant runSpace". This will start the Compute Space.</li>
+		<li>From the other terminal window (in the same machine where you'd initially logged into) , run "ant -Dusername=username -Dpassword=password x(1|4|8)Computer(s)" (You may have to run "ant x4Computers" if you want to run four Compute Servers and so on.). This will start the Compute Server(s) on the remote machine(s) that was (were) specified in the properties section of the build.xml file.
+			For safety reasons, you may also put the command with the appropriate credentials in an executable file and then execute it.</li>
+		<li>Open another terminal window (in the same machine where you'd initially logged into) and run "ant run(TSP|MBS|Fib)Client" to start the appropriate client</li> 
+		<li>After the tasks are executed, you must be able to see the results displayed in a GUI. <br/>
+		    If you are connected to the client machine via ssh, make sure X11 Forwarding is enabled for that connection (ssh -X) so that you can see the results.</li>		
+	</ol>
+</body>
+</html>
